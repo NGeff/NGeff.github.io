@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geff - Full Stack Developer Portfolio</title>
+    <title>Geff - Full Stack Developer</title>
     <style>
         * {
             margin: 0;
@@ -12,1221 +12,668 @@
         }
 
         :root {
-            --primary-color: #00f7ff;
-            --secondary-color: #ff00ff;
-            --bg-dark: #0a0a0f;
-            --bg-card: #1a1a2e;
-            --text-color: #ffffff;
-            --text-gray: #a0a0a0;
-            --gradient: linear-gradient(135deg, #00f7ff 0%, #ff00ff 100%);
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #7d8590;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --hover-bg: #30363d;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-color);
-            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
-        .animated-bg {
-            position: fixed;
+        header {
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .animated-bg canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
+            background-color: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 32px;
+            z-index: 1000;
         }
 
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
+            max-width: 1280px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 20px rgba(0, 247, 255, 0.1);
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 24px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-color);
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
+        .nav-links a:hover {
+            background-color: var(--hover-bg);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 4px 0;
-            transition: 0.3s;
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 64px 32px;
         }
 
         .hero {
-            min-height: 100vh;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
             align-items: center;
-            justify-content: center;
-            padding: 6rem 5% 2rem;
-            position: relative;
+            margin-bottom: 96px;
         }
 
-        .hero-content {
-            max-width: 1200px;
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .button-group {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
+            gap: 12px;
             flex-wrap: wrap;
-        }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInLeft 1s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-text h2 {
-            font-size: 2rem;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            animation: slideInLeft 1s ease-out 0.2s both;
-        }
-
-        .typing-text {
-            color: var(--primary-color);
-            border-right: 2px solid var(--primary-color);
-            animation: blink 0.7s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            animation: slideInLeft 1s ease-out 0.4s both;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            animation: slideInLeft 1s ease-out 0.6s both;
         }
 
         .btn {
-            padding: 0.9rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
             text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
         }
 
         .btn-primary {
-            background: var(--gradient);
-            color: white;
+            background-color: var(--accent-green);
+            color: #fff;
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff00ff 0%, #00f7ff 100%);
-            transition: left 0.3s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 0;
-        }
-
-        .btn-primary span {
-            position: relative;
-            z-index: 1;
+        .btn-primary:hover {
+            background-color: #2ea043;
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+            background-color: transparent;
+            border-color: var(--border-color);
+            color: var(--text-primary);
         }
 
         .btn-secondary:hover {
-            background: var(--primary-color);
-            color: var(--bg-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.3);
+            background-color: var(--hover-bg);
+            border-color: var(--text-secondary);
         }
 
         .hero-image {
-            flex: 1;
-            min-width: 300px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .profile-card {
-            width: 350px;
-            height: 350px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 60px rgba(0, 247, 255, 0.2);
-            border: 1px solid rgba(0, 247, 255, 0.2);
+        .profile-container {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
-            animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .profile-card::before {
+        .profile-container::before {
             content: '';
             position: absolute;
             inset: -2px;
-            background: var(--gradient);
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .profile-card:hover::before {
-            opacity: 1;
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
             border-radius: 50%;
-            margin-bottom: 1.5rem;
-            border: 3px solid var(--primary-color);
-            object-fit: cover;
-        }
-
-        .code-stats {
-            width: 100%;
-            text-align: center;
-        }
-
-        .stat-item {
-            margin: 0.8rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .stat-label {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .stat-value {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .section {
-            padding: 5rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            opacity: 0.1;
+            z-index: -1;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 96px;
         }
 
-        .skill-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 247, 255, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-align: center;
+        .skill-category {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            transition: border-color 0.2s ease;
         }
 
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 247, 255, 0.2);
-            border-color: var(--primary-color);
+        .skill-category:hover {
+            border-color: var(--text-secondary);
         }
 
-        .skill-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            display: block;
+        .skill-category h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .skill-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            font-size: 1.4rem;
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .skill-card p {
-            color: var(--text-gray);
+        .skill-tag {
+            background-color: var(--bg-tertiary);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .projects-section {
+            margin-bottom: 96px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--text-secondary);
+            transform: translateY(-4px);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .project-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
             line-height: 1.6;
         }
 
-        .contact-container {
+        .project-tech {
             display: flex;
-            gap: 3rem;
             flex-wrap: wrap;
-            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
+        .tech-tag {
+            background-color: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: var(--accent-blue);
         }
 
-        .contact-item {
+        .project-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .contact-section {
+            margin-bottom: 64px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: var(--bg-card);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 247, 255, 0.1);
-            transition: all 0.3s ease;
+            gap: 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
         }
 
-        .contact-item:hover {
-            border-color: var(--primary-color);
-            transform: translateX(10px);
+        .contact-card:hover {
+            border-color: var(--accent-blue);
+            background-color: var(--bg-tertiary);
         }
 
         .contact-icon {
             width: 40px;
             height: 40px;
-            fill: var(--primary-color);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .social-link {
-            width: 60px;
-            height: 60px;
-            background: var(--bg-card);
-            border: 2px solid rgba(0, 247, 255, 0.2);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            cursor: pointer;
         }
 
-        .social-link:hover {
-            background: var(--gradient);
-            transform: translateY(-5px) rotate(360deg);
-            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.3);
-            border-color: transparent;
+        .contact-info h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        .social-icon {
-            width: 30px;
-            height: 30px;
-            fill: var(--text-color);
+        .contact-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
         }
 
         footer {
-            background: var(--bg-card);
-            padding: 2rem 5%;
+            border-top: 1px solid var(--border-color);
+            padding: 32px;
             text-align: center;
-            border-top: 1px solid rgba(0, 247, 255, 0.1);
-        }
-
-        footer p {
-            color: var(--text-gray);
-        }
-
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.5);
-        }
-
-        .music-player {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            background: var(--bg-card);
-            border: 2px solid rgba(0, 247, 255, 0.3);
-            border-radius: 20px;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 1000;
-            transition: all 0.5s ease;
-            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
-            max-width: 380px;
-            cursor: pointer;
-        }
-
-        .music-player.hidden {
-            opacity: 0;
-            transform: translateX(-100%);
-            pointer-events: none;
-        }
-
-        .music-player:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 10px 40px rgba(0, 247, 255, 0.4);
-        }
-
-        .album-cover-container {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            flex-shrink: 0;
-        }
-
-        .album-cover {
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 2px solid var(--primary-color);
-        }
-
-        .play-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-overlay:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .play-overlay svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-
-        .play-overlay.hidden {
-            display: none;
-        }
-
-        .music-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .music-title {
-            color: var(--text-color);
-            font-size: 0.95rem;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 0.2rem;
-        }
-
-        .music-artist {
-            color: var(--text-gray);
-            font-size: 0.75rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 247, 255, 0.2);
-            border-radius: 2px;
-            cursor: pointer;
-            position: relative;
-            margin-top: 0.5rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--gradient);
-            border-radius: 2px;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .time-display {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            color: var(--text-gray);
-            margin-top: 0.3rem;
-        }
-
-        @keyframes musicPulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        .playing .music-title {
-            animation: musicPulse 2s ease-in-out infinite;
-        }
-
-        .music-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: var(--bg-card);
-            border: 2px solid var(--primary-color);
-            border-radius: 25px;
-            padding: 2rem;
-            z-index: 10001;
-            max-width: 400px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 247, 255, 0.4);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .music-popup.show {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 10000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .popup-overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .popup-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .popup-header h2 {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .popup-icon {
-            width: 50px;
-            height: 50px;
-            fill: var(--primary-color);
-            margin: 0 auto 1.5rem;
-            display: block;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .popup-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .popup-song {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: rgba(0, 247, 255, 0.1);
-            padding: 1rem;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 247, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .popup-song:hover {
-            border-color: var(--primary-color);
-            transform: translateX(5px);
-        }
-
-        .popup-song img {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            border: 2px solid var(--primary-color);
-        }
-
-        .popup-song-info {
-            flex: 1;
-        }
-
-        .popup-song-info h3 {
-            color: var(--text-color);
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .popup-song-info p {
-            color: var(--text-gray);
-            font-size: 0.85rem;
-        }
-
-        .coming-soon {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(0, 247, 255, 0.05);
-            border-radius: 15px;
-            border: 1px dashed rgba(0, 247, 255, 0.3);
-        }
-
-        .coming-soon p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .close-popup {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            width: 100%;
-            margin-top: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .close-popup:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.5);
+            color: var(--text-secondary);
+            font-size: 14px;
         }
 
         @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
             .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                flex-direction: column;
-                background: rgba(10, 10, 15, 0.98);
-                width: 100%;
-                padding: 2rem;
-                transition: left 0.3s ease;
+                gap: 12px;
             }
 
-            .nav-links.active {
-                left: 0;
+            main {
+                padding: 48px 24px;
             }
 
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text h2 {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .music-player {
-                max-width: 320px;
-            }
-
-            .volume-buttons {
-                flex-direction: column;
+            .projects-grid,
+            .skills-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.5s ease;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .loader.hidden {
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
             opacity: 0;
-            pointer-events: none;
         }
 
-        .loader-icon {
-            width: 100px;
-            height: 100px;
-            border: 5px solid rgba(0, 247, 255, 0.1);
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        .animate-in:nth-child(1) { animation-delay: 0.1s; }
+        .animate-in:nth-child(2) { animation-delay: 0.2s; }
+        .animate-in:nth-child(3) { animation-delay: 0.3s; }
     </style>
 </head>
 <body>
-    <div class="loader" id="loader">
-        <div class="loader-icon"></div>
-    </div>
+    <header>
+        <nav>
+            <a href="#" class="logo">Geff</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="animated-bg">
-        <canvas id="canvas"></canvas>
-    </div>
-
-    <nav>
-        <div class="logo">Geff</div>
-        <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Hi, I'm Geff</h1>
-                <h2>I'm a <span class="typing-text" id="typingText"></span></h2>
-                <p>17-year-old Full Stack Developer passionate about creating innovative web and mobile solutions. I transform ideas into reality using modern technologies and creative problem-solving.</p>
-                <div class="cta-buttons">
-                    <a href="#skills" class="btn btn-primary"><span>View My Skills</span></a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <main>
+        <section class="hero" id="about">
+            <div class="hero-content">
+                <h1 class="animate-in">Hi, I'm Geff</h1>
+                <p class="subtitle animate-in">Full Stack Developer</p>
+                <p class="animate-in">Building modern web and mobile applications with clean code and user-focused design. Passionate about creating scalable solutions and learning new technologies.</p>
+                <div class="button-group animate-in">
+                    <a href="#contact" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"></path>
+                        </svg>
+                        Get in touch
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                        </svg>
+                        View projects
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="profile-card">
-                    <img src="https://github.com/NGeff.png" alt="NGeff Profile" class="profile-img">
-                    <div class="code-stats">
-                        <div class="stat-item">
-                            <span class="stat-label">Age</span>
-                            <span class="stat-value">17 years</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Experience</span>
-                            <span class="stat-value">Full Stack</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Location</span>
-                            <span class="stat-value">Brazil</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Coffee</span>
-                            <span class="stat-value">∞ cups</span>
-                        </div>
+                <div class="profile-container">
+                    <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+                        <circle cx="100" cy="80" r="35" fill="var(--accent-blue)" opacity="0.2"/>
+                        <circle cx="100" cy="80" r="30" fill="var(--accent-blue)" opacity="0.4"/>
+                        <path d="M70 130 Q100 110, 130 130 L130 160 Q100 140, 70 160 Z" fill="var(--accent-green)" opacity="0.3"/>
+                        <rect x="85" y="90" width="30" height="50" rx="15" fill="var(--accent-blue)" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-section" id="skills">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category animate-in">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--accent-blue)">
+                            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                        </svg>
+                        Frontend
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-in">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--accent-green)">
+                            <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
+                        </svg>
+                        Backend
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">GraphQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category animate-in">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--text-secondary)">
+                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z"></path>
+                        </svg>
+                        Tools & DevOps
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">VS Code</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section" id="about">
-        <h2 class="section-title">About Me</h2>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <p style="color: var(--text-gray); line-height: 1.8; font-size: 1.1rem; margin-bottom: 2rem;">
-                Born on August 11, 2008, I discovered my passion for programming at a young age. Since then, I've been dedicated to mastering the art of full-stack development. I love building things that live on the internet, whether that's websites, applications, or anything in between.
-            </p>
-            <p style="color: var(--text-gray); line-height: 1.8; font-size: 1.1rem;">
-                My goal is to always build products that provide pixel-perfect, performant experiences. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or learning something new.
-            </p>
-        </div>
-    </section>
+        <section class="projects-section" id="projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--text-secondary)">
+                            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                        </svg>
+                        <h3>E-commerce Platform</h3>
+                    </div>
+                    <p class="project-description">
+                        Full-featured online store with payment integration, inventory management, and real-time order tracking.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                            </svg>
+                            Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path>
+                            </svg>
+                            Demo
+                        </a>
+                    </div>
+                </div>
 
-    <section class="section" id="skills">
-        <h2 class="section-title">My Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon">
-                <h3>JavaScript</h3>
-                <p>Building dynamic and interactive web applications</p>
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--text-secondary)">
+                            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                        </svg>
+                        <h3>Task Management App</h3>
+                    </div>
+                    <p class="project-description">
+                        Collaborative project management tool with real-time updates, team workspaces, and advanced filtering.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Socket.io</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                            </svg>
+                            Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path>
+                            </svg>
+                            Demo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card animate-in">
+                    <div class="project-header">
+                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--text-secondary)">
+                            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                        </svg>
+                        <h3>Weather Dashboard</h3>
+                    </div>
+                    <p class="project-description">
+                        Interactive weather application with geolocation, 7-day forecast, and detailed weather metrics visualization.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">API Integration</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">Geolocation</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                            </svg>
+                            Code
+                        </a>
+                        <a href="#" class="project-link">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path>
+                            </svg>
+                            Demo
+                        </a>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="skill-icon">
-                <h3>Node.js</h3>
-                <p>Creating scalable backend solutions and APIs</p>
-            </div>
-
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-icon">
-                <h3>Python</h3>
-                <p>Automation, scripting, and backend development</p>
-            </div>
-
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="skill-icon">
-                <h3>React</h3>
-                <p>Creating modern, responsive user interfaces</p>
-            </div>
-
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="skill-icon">
-                <h3>HTML5</h3>
-                <p>Crafting semantic and accessible web structures</p>
-            </div>
-
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="skill-icon">
-                <h3>CSS3</h3>
-                <p>Designing beautiful and responsive layouts</p>
-            </div>
-
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="skill-icon">
-                <h3>MongoDB</h3>
-                <p>Designing and managing NoSQL databases</p>
-            </div>
-
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" alt="Android" class="skill-icon">
-                <h3>Android Development</h3>
-                <p>Building native mobile applications</p>
-            </div>
-
-            <div class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lua/lua-original.svg" alt="Lua" class="skill-icon">
-                <h3>Lua</h3>
-                <p>Scripting and game development</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <svg class="contact-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    <div>
+        <section class="contact-section" id="contact">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <a href="https://github.com/NGeff" class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <div class="contact-icon">
+                        <svg width="32" height="32" viewBox="0 0 16 16" fill="var(--text-primary)">
+                            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                        </svg>
+                    </div>
+                    <div class="contact-info">
                         <h4>GitHub</h4>
-                        <p style="color: var(--text-gray);">github.com/NGeff</p>
+                        <p>github.com/NGeff</p>
                     </div>
-                </div>
+                </a>
 
-                <div class="contact-item">
-                    <svg class="contact-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
-                    </svg>
-                    <div>
-                        <h4>Instagram</h4>
-                        <p style="color: var(--text-gray);">@geff.vv</p>
+                <a href="mailto:contact@example.com" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="32" height="32" viewBox="0 0 16 16" fill="var(--text-primary)">
+                            <path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"></path>
+                        </svg>
                     </div>
-                </div>
-
-                <div class="contact-item">
-                    <svg class="contact-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                    </svg>
-                    <div>
-                        <h4>WhatsApp</h4>
-                        <p style="color: var(--text-gray);">+55 82 98896-1687</p>
+                    <div class="contact-info">
+                        <h4>Email</h4>
+                        <p>contact@example.com</p>
                     </div>
-                </div>
+                </a>
 
-                <div class="contact-item">
-                    <svg class="contact-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-                    </svg>
-                    <div>
-                        <h4>Discord</h4>
-                        <p style="color: var(--text-gray);">920888751843074079</p>
+                <a href="https://linkedin.com/in/yourprofile" class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <div class="contact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--text-primary)">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
                     </div>
-                </div>
+                    <div class="contact-info">
+                        <h4>LinkedIn</h4>
+                        <p>linkedin.com/in/yourprofile</p>
+                    </div>
+                </a>
 
-                <div class="social-links">
-                    <a href="https://github.com/NGeff" target="_blank" class="social-link" title="GitHub">
-                        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                <a href="https://twitter.com/yourhandle" class="contact-card" target="_blank" rel="noopener noreferrer">
+                    <div class="contact-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--text-primary)">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
-                    </a>
-                    <a href="https://instagram.com/geff.vv" target="_blank" class="social-link" title="Instagram">
-                        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
-                        </svg>
-                    </a>
-                    <a href="https://wa.me/5582988961687" target="_blank" class="social-link" title="WhatsApp">
-                        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                        </svg>
-                    </a>
-                    <a href="https://discord.com/users/920888751843074079" target="_blank" class="social-link" title="Discord">
-                        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-                        </svg>
-                    </a>
-                </div>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Twitter</h4>
+                        <p>@yourhandle</p>
+                    </div>
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2024 Geff. Built with 💙 and lots of ☕</p>
-        <p>Designed & Developed by <a href="https://github.com/NGeff">Geff</a></p>
+        <p>Built with passion. All rights reserved.</p>
     </footer>
 
-    <div class="scroll-top" id="scrollTop">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-            <path d="M12 4l-8 8h5v8h6v-8h5z"/>
-        </svg>
-    </div>
-
-    <div class="popup-overlay" id="popupOverlay"></div>
-    
-    <div class="music-popup" id="musicPopup">
-        <div class="popup-header">
-            <svg class="popup-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-            </svg>
-            <h2>My Favorite Song</h2>
-        </div>
-        
-        <div class="popup-content">
-            <div class="popup-song">
-                <img src="https://files.catbox.moe/cjvqvf.png" alt="Album Cover">
-                <div class="popup-song-info">
-                    <h3>Ainda Gosto Dela</h3>
-                    <p>Skank</p>
-                </div>
-            </div>
-            
-            <div class="coming-soon">
-                <p>More songs coming soon...</p>
-            </div>
-        </div>
-        
-        <button class="close-popup" id="closePopup">Close</button>
-    </div>
-
-    <div class="music-player" id="musicPlayer">
-        <div class="album-cover-container">
-            <img src="https://files.catbox.moe/cjvqvf.png" alt="Album Cover" class="album-cover">
-            <div class="play-overlay" id="playOverlay">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-            </div>
-        </div>
-        <div class="music-info">
-            <div class="music-title">Ainda Gosto Dela</div>
-            <div class="music-artist">Skank</div>
-            <div class="progress-bar" id="progressBar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="time-display">
-                <span id="currentTime">0:00</span>
-                <span id="duration">0:00</span>
-            </div>
-        </div>
-    </div>
-
-    <audio id="backgroundMusic" loop>
-        <source src="https://files.catbox.moe/qk0a1e.mp3" type="audio/mpeg">
-    </audio>
-
     <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1000);
-        });
-
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 80;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = '#00f7ff';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                for (let j = i; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 247, 255, ${1 - distance / 100})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        const texts = ['Full Stack Developer', 'Web Developer', 'Mobile Developer', 'Problem Solver', 'Code Enthusiast'];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.getElementById('typingText');
-
-        function type() {
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typeSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(type, typeSpeed);
-        }
-
-        type();
-
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1240,172 +687,22 @@
             });
         });
 
-        const scrollTop = document.getElementById('scrollTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.skill-card, .contact-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
+        document.querySelectorAll('.skill-category, .project-card').forEach(el => {
             observer.observe(el);
         });
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroText = document.querySelector('.hero-text');
-            const heroImage = document.querySelector('.hero-image');
-            
-            if (heroText && heroImage) {
-                heroText.style.transform = `translateY(${scrolled * 0.3}px)`;
-                heroImage.style.transform = `translateY(${scrolled * 0.2}px)`;
-            }
-        });
-
-        const musicPlayer = document.getElementById('musicPlayer');
-        const backgroundMusic = document.getElementById('backgroundMusic');
-        const progressBar = document.getElementById('progressBar');
-        const progressFill = document.getElementById('progressFill');
-        const currentTimeEl = document.getElementById('currentTime');
-        const durationEl = document.getElementById('duration');
-        const musicPopup = document.getElementById('musicPopup');
-        const popupOverlay = document.getElementById('popupOverlay');
-        const closePopup = document.getElementById('closePopup');
-        const playOverlay = document.getElementById('playOverlay');
-        
-        let hideTimeout;
-        let isPlaying = false;
-        let hasShownPopup = false;
-
-        backgroundMusic.volume = 1.0;
-
-        function formatTime(seconds) {
-            const mins = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-
-        backgroundMusic.addEventListener('loadedmetadata', () => {
-            durationEl.textContent = formatTime(backgroundMusic.duration);
-        });
-
-        backgroundMusic.addEventListener('timeupdate', () => {
-            const progress = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
-            progressFill.style.width = `${progress}%`;
-            currentTimeEl.textContent = formatTime(backgroundMusic.currentTime);
-        });
-
-        backgroundMusic.addEventListener('ended', () => {
-            playOverlay.classList.remove('hidden');
-            setTimeout(() => {
-                playOverlay.classList.add('hidden');
-            }, 3000);
-        });
-
-        progressBar.addEventListener('click', (e) => {
-            const rect = progressBar.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const width = rect.width;
-            const percentage = clickX / width;
-            backgroundMusic.currentTime = percentage * backgroundMusic.duration;
-        });
-
-        playOverlay.addEventListener('click', (e) => {
-            e.stopPropagation();
-            backgroundMusic.play().then(() => {
-                isPlaying = true;
-                musicPlayer.classList.add('playing');
-                playOverlay.classList.add('hidden');
-            }).catch((error) => {
-                console.log('Play error:', error);
-            });
-        });
-
-        window.addEventListener('load', () => {
-            backgroundMusic.play().then(() => {
-                isPlaying = true;
-                musicPlayer.classList.add('playing');
-                playOverlay.classList.add('hidden');
-                
-                setTimeout(() => {
-                    playOverlay.classList.remove('hidden');
-                    setTimeout(() => {
-                        playOverlay.classList.add('hidden');
-                    }, 3000);
-                }, 1000);
-            }).catch((error) => {
-                console.log('Autoplay prevented:', error);
-                playOverlay.classList.remove('hidden');
-            });
-
-            hideTimeout = setTimeout(() => {
-                musicPlayer.classList.add('hidden');
-            }, 5000);
-        });
-
-        musicPlayer.addEventListener('mouseenter', () => {
-            clearTimeout(hideTimeout);
-            musicPlayer.classList.remove('hidden');
-        });
-
-        musicPlayer.addEventListener('mouseleave', () => {
-            hideTimeout = setTimeout(() => {
-                musicPlayer.classList.add('hidden');
-            }, 2000);
-        });
-
-        musicPlayer.addEventListener('click', (e) => {
-            if (e.target.closest('#progressBar') || e.target.closest('#playOverlay')) {
-                return;
-            }
-            
-            if (!hasShownPopup) {
-                musicPopup.classList.add('show');
-                popupOverlay.classList.add('show');
-                hasShownPopup = true;
-            }
-        });
-
-        closePopup.addEventListener('click', () => {
-            musicPopup.classList.remove('show');
-            popupOverlay.classList.remove('show');
-        });
-
-        popupOverlay.addEventListener('click', () => {
-            musicPopup.classList.remove('show');
-            popupOverlay.classList.remove('show');
-        });
-
-        console.log('%c🚀 Welcome to my portfolio!', 'color: #00f7ff; font-size: 20px; font-weight: bold;');
-        console.log('%cLooking at the code? I like your style! 😎', 'color: #ff00ff; font-size: 14px;');
-        console.log('%cFeel free to reach out: github.com/NGeff', 'color: #00f7ff; font-size: 12px;');
     </script>
 </body>
 </html>
