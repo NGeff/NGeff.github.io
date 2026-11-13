@@ -1,534 +1,333 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geff - Full Stack Developer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geff · desenvolvedor full stack</title>
+<meta name="description" content="Geff, desenvolvedor full stack do Brasil e sócio da GLD Solutions. Apps Android, sites, APIs e bots.">
+<meta name="theme-color" content="#0b0c0a">
+<meta property="og:title" content="Geff · desenvolvedor full stack">
+<meta property="og:description" content="Apps Android, sites, APIs e bots. Sócio da GLD Solutions.">
+<meta property="og:image" content="https://geff.gldsolutions.com.br/assets/img/geff.webp">
+<meta property="og:url" content="https://geff.gldsolutions.com.br/">
+<link rel="canonical" href="https://geff.gldsolutions.com.br/">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+:root {
+  --bg: #0b0c0a;
+  --bg-2: #121411;
+  --line: #22261f;
+  --line-2: #363c32;
+  --ink: #eceee6;
+  --ink-2: #b0b6aa;
+  --ink-3: #80877c;
+  --acc: #c6f24e;
+  --display: 'Anybody', system-ui, sans-serif;
+  --text: 'Geist', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --pad: clamp(18px, 4vw, 56px);
+  --max: 1320px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--text); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+figure { margin: 0; }
+a { color: inherit; }
+::selection { background: var(--acc); color: #0b0c0a; }
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--acc); color: #0b0c0a; padding: 8px 12px; z-index: 10; }
+.skip:focus { left: 8px; }
 
-        :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --border-color: #30363d;
-            --text-primary: #e6edf3;
-            --text-secondary: #7d8590;
-            --accent-blue: #58a6ff;
-            --accent-green: #3fb950;
-            --hover-bg: #30363d;
-        }
+/* topo */
+.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+.mark { font: 850 20px/1 var(--display); font-stretch: 130%; letter-spacing: -.02em; text-decoration: none; }
+.mark i { font-style: normal; color: var(--acc); }
+.nav { display: flex; gap: clamp(14px, 2.4vw, 32px); font-size: 14.5px; }
+.nav a { text-decoration: none; color: var(--ink-2); transition: color .2s; }
+.nav a:hover { color: var(--ink); }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
+/* hero */
+.hero { padding: clamp(48px, 9vh, 110px) 0 clamp(56px, 9vh, 96px); border-bottom: 1px solid var(--line); }
+.kicker { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 14px; color: var(--ink-3); margin: 0 0 18px; }
+.kicker b { font-weight: 500; color: var(--ink-2); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px clamp(24px, 4vw, 64px); }
+.name { font: 900 clamp(92px, 18.5vw, 262px)/.78 var(--display); font-stretch: 150%; letter-spacing: -.055em; margin: 0 0 0 -.04em; }
+.name span { color: var(--acc); }
+.portrait { width: clamp(150px, 17vw, 236px); margin: 0 0 6px; }
+.portrait img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(1) contrast(1.06); transition: filter .5s; }
+.portrait:hover img { filter: none; }
+.portrait figcaption { margin-top: 8px; font-size: 12.5px; color: var(--ink-3); }
+.lead { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px clamp(24px, 5vw, 80px); margin-top: clamp(36px, 6vh, 64px); align-items: end; }
+.lead p { margin: 0; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.45; color: var(--ink-2); max-width: 34ch; }
+.lead p strong { color: var(--ink); font-weight: 500; }
+.lead p a { text-decoration-color: var(--line-2); text-underline-offset: 4px; transition: text-decoration-color .2s, color .2s; }
+.lead p a:hover { color: var(--acc); text-decoration-color: var(--acc); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; font: 600 15px/1 var(--text); text-decoration: none; border: 1px solid var(--line-2); transition: background .2s, color .2s, border-color .2s; }
+.btn:hover { border-color: var(--ink); }
+.btn.solid { background: var(--acc); color: #0b0c0a; border-color: var(--acc); }
+.btn.solid:hover { background: var(--ink); border-color: var(--ink); }
+.btn svg { width: 14px; height: 14px; flex: none; transition: transform .25s; }
+.btn:hover svg { transform: translate(2px, -2px); }
+.btn.down:hover svg { transform: translateY(3px); }
 
-        header {
-            position: sticky;
-            top: 0;
-            background-color: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 16px 32px;
-            z-index: 1000;
-        }
+/* seções */
+.sec { padding: clamp(72px, 12vh, 140px) 0; border-bottom: 1px solid var(--line); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: clamp(32px, 5vh, 56px); }
+.sec-head h2 { font: 800 clamp(40px, 6vw, 84px)/.9 var(--display); font-stretch: 125%; letter-spacing: -.04em; margin: 0; }
+.sec-head p { margin: 0; color: var(--ink-3); font-size: 14.5px; max-width: 36ch; text-align: right; }
 
-        nav {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* agora: Lince */
+.now { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 48px clamp(32px, 6vw, 96px); align-items: center; }
+.now-id { display: flex; align-items: center; gap: 16px; }
+.now-id img { width: 64px; height: 64px; border-radius: 16px; background: #f2b35a; padding: 4px; }
+.now-id h3 { font: 850 clamp(48px, 6vw, 80px)/.85 var(--display); font-stretch: 122%; letter-spacing: -.04em; margin: 0; }
+.now-meta { font-size: 14px; color: var(--ink-3); margin: 18px 0 0; }
+.now-meta span + span::before { content: "·"; margin: 0 10px; color: var(--line-2); }
+.now-text { font-size: 18px; color: var(--ink-2); margin: 24px 0 0; max-width: 46ch; }
+.now-list { list-style: none; padding: 0; margin: 28px 0 0; border-top: 1px solid var(--line); }
+.now-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--ink-2); display: grid; grid-template-columns: 28px 1fr; }
+.now-list li::before { content: "—"; color: #f2b35a; }
+.now .actions { justify-content: flex-start; margin-top: 32px; }
+.now .btn.solid { background: #f2b35a; border-color: #f2b35a; }
+.now .btn.solid:hover { background: var(--ink); border-color: var(--ink); }
+.phones { position: relative; aspect-ratio: 10 / 9; }
+.phone { position: absolute; width: 39%; border: 1px solid var(--line-2); border-radius: 22px; padding: 6px; background: #050605; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.phone img { border-radius: 16px; aspect-ratio: 720 / 1600; width: 100%; object-fit: cover; }
+.phone.p1 { left: 0; top: 14%; transform: rotate(-5deg); }
+.phone.p2 { left: 30.5%; top: 0; z-index: 2; }
+.phone.p3 { right: 0; top: 16%; transform: rotate(5deg); }
+.phones:hover .p1 { transform: rotate(-7deg) translateX(-8px); }
+.phones:hover .p3 { transform: rotate(7deg) translateX(8px); }
 
-        .logo {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
+/* índice */
+.index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.row { border-bottom: 1px solid var(--line); }
+.row a { display: grid; grid-template-columns: 48px 64px minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, .9fr) 24px; gap: 20px; align-items: baseline; padding: 22px 0; text-decoration: none; transition: background .25s, padding .25s; }
+.row .n, .row .y { font: 500 13px/1 var(--mono); color: var(--ink-3); }
+.row h3 { margin: 0; font: 750 clamp(22px, 2.2vw, 30px)/1.05 var(--display); font-stretch: 115%; letter-spacing: -.02em; transition: color .2s; }
+.row .d { color: var(--ink-2); font-size: 15px; }
+.row .s { color: var(--ink-3); font-size: 13.5px; }
+.row svg { width: 16px; height: 16px; color: var(--ink-3); transition: transform .25s, color .2s; align-self: center; }
+.row a:hover { background: var(--bg-2); padding-left: 12px; padding-right: 12px; }
+.row a:hover h3 { color: var(--acc); }
+.row a:hover svg { color: var(--acc); transform: translate(3px, -3px); }
+.index-foot { margin: 22px 0 0; font-size: 14px; color: var(--ink-3); }
+.index-foot a { color: var(--ink-2); text-underline-offset: 3px; }
+.index-foot a:hover { color: var(--acc); }
 
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
+/* ferramentas */
+.tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-2); margin: 0; }
+.tools div { padding: 24px 24px 28px 0; border-bottom: 1px solid var(--line); }
+.tools div:not(:nth-child(3n+1)) { padding-left: 24px; border-left: 1px solid var(--line); }
+.tools dt { font-size: 13px; color: var(--ink-3); margin-bottom: 10px; }
+.tools dd { margin: 0; font: 650 clamp(19px, 1.7vw, 23px)/1.3 var(--display); font-stretch: 108%; letter-spacing: -.01em; }
 
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: background-color 0.2s ease;
-        }
+/* contato */
+.contact h2 { font: 900 clamp(52px, 10.5vw, 150px)/.84 var(--display); font-stretch: 140%; letter-spacing: -.05em; margin: 0 0 clamp(40px, 7vh, 72px); }
+.contact h2 span { color: var(--acc); }
+.links { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.links a { display: grid; grid-template-columns: 160px minmax(0, 1fr) 24px; gap: 16px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.links .k { font-size: 14px; color: var(--ink-3); }
+.links .v { font: 700 clamp(22px, 3vw, 40px)/1.1 var(--display); font-stretch: 112%; letter-spacing: -.025em; transition: color .2s; overflow-wrap: break-word; }
+.links svg { width: 18px; height: 18px; color: var(--ink-3); transition: transform .25s, color .2s; align-self: center; }
+.links a:hover .v, .links a:hover svg { color: var(--acc); }
+.links a:hover svg { transform: translate(3px, -3px); }
 
-        .nav-links a:hover {
-            background-color: var(--hover-bg);
-        }
+.foot { padding: 32px 0 40px; font-size: 13.5px; color: var(--ink-3); }
+.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.foot a { color: var(--ink-2); text-underline-offset: 3px; }
 
-        main {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 64px 32px;
-        }
+/* entrada */
+.js .rv { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.js .rv.on { opacity: 1; transform: none; }
 
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-            margin-bottom: 96px;
-        }
-
-        .hero-content h1 {
-            font-size: 48px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-
-        .hero-content .subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-
-        .hero-content p {
-            color: var(--text-secondary);
-            font-size: 16px;
-            margin-bottom: 32px;
-            line-height: 1.7;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-green);
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            background-color: #2ea043;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border-color: var(--border-color);
-            color: var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--hover-bg);
-            border-color: var(--text-secondary);
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .profile-container {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: var(--bg-secondary);
-        }
-
-        .profile-container::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 40px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 96px;
-        }
-
-        .skill-category {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 24px;
-            transition: border-color 0.2s ease;
-        }
-
-        .skill-category:hover {
-            border-color: var(--text-secondary);
-        }
-
-        .skill-category h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .skill-tag {
-            background-color: var(--bg-tertiary);
-            padding: 6px 12px;
-            border-radius: 12px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--accent-blue);
-            color: var(--accent-blue);
-        }
-
-        .contact-section {
-            margin-bottom: 64px;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .contact-card {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.2s ease;
-        }
-
-        .contact-card:hover {
-            border-color: var(--accent-blue);
-            background-color: var(--bg-tertiary);
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .contact-info h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .contact-info p {
-            font-size: 13px;
-            color: var(--text-secondary);
-            word-break: break-all;
-        }
-
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 32px;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .hero-content h1 {
-                font-size: 36px;
-            }
-
-            .nav-links {
-                gap: 12px;
-            }
-
-            main {
-                padding: 48px 24px;
-            }
-
-            .skills-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-in:nth-child(1) { animation-delay: 0.1s; }
-        .animate-in:nth-child(2) { animation-delay: 0.2s; }
-        .animate-in:nth-child(3) { animation-delay: 0.3s; }
-    </style>
+@media (max-width: 960px) {
+  .now { grid-template-columns: 1fr; }
+  .phones { max-width: 560px; }
+  .row a { grid-template-columns: 40px minmax(0, 1fr) 20px; gap: 6px 14px; }
+  .row .y { display: none; }
+  .row h3 { grid-column: 2; }
+  .row .d, .row .s { grid-column: 2; }
+  .row svg { grid-column: 3; grid-row: 1; }
+  .tools { grid-template-columns: 1fr 1fr; }
+  .tools div:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+  .tools div:nth-child(2n) { padding-left: 20px; border-left: 1px solid var(--line); }
+}
+@media (max-width: 640px) {
+  .nav a:not(.keep) { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .portrait { width: 132px; order: -1; }
+  .lead { grid-template-columns: 1fr; }
+  .actions { justify-content: flex-start; }
+  .sec-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .sec-head p { text-align: left; }
+  .tools { grid-template-columns: 1fr; }
+  .tools div:nth-child(2n) { padding-left: 0; border-left: 0; }
+  .links a { grid-template-columns: minmax(0, 1fr) 20px; gap: 4px 12px; }
+  .links .k { grid-column: 1; }
+  .links .v { grid-column: 1; }
+  .links svg { grid-column: 2; grid-row: 1 / span 2; }
+  .sec-head h2 { font-size: 9.4vw; }
+  .contact h2 { font-size: 11vw; font-stretch: 118%; }
+  .links .v { font-size: clamp(18px, 5.4vw, 24px); }
+  .phone { border-radius: 16px; padding: 4px; }
+  .phone img { border-radius: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+  .js .rv { opacity: 1; transform: none; }
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#" class="logo">Geff</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-    <main>
-        <section class="hero" id="about">
-            <div class="hero-content">
-                <h1 class="animate-in">Hi, I'm Geff</h1>
-                <p class="subtitle animate-in">Full Stack Developer</p>
-                <p class="animate-in">Building modern web and mobile applications with clean code and user-focused design. Passionate about creating scalable solutions and learning new technologies.</p>
-                <div class="button-group animate-in">
-                    <a href="#contact" class="btn btn-primary">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"></path>
-                        </svg>
-                        Get in touch
-                    </a>
-                    <a href="https://github.com/NGeff" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-                        </svg>
-                        View GitHub
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="profile-container">
-                    <img src="https://i.ibb.co/nqHKHzG3/1000723950.jpg" alt="Geff Profile" class="profile-image">
-                </div>
-            </div>
-        </section>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arr" viewBox="0 0 16 16"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="down" viewBox="0 0 16 16"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+</svg>
 
-        <section class="skills-section" id="skills">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category animate-in">
-                    <h3>
-                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--accent-blue)">
-                            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-                        </svg>
-                        Frontend
-                    </h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Next.js</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">Tailwind CSS</span>
-                    </div>
-                </div>
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="/">geff<i>.</i></a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#agora">Agora</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#ferramentas">Ferramentas</a>
+      <a class="keep" href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
 
-                <div class="skill-category animate-in">
-                    <h3>
-                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--accent-green)">
-                            <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
-                        </svg>
-                        Backend
-                    </h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">REST API</span>
-                        <span class="skill-tag">GraphQL</span>
-                    </div>
-                </div>
+<main id="conteudo">
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker"><b>Desenvolvedor full stack</b><span>Brasil</span><span>Sócio da GLD Solutions</span></p>
+      <div class="hero-grid">
+        <h1 class="name">Geff<span>.</span></h1>
+        <figure class="portrait">
+          <img src="/assets/img/geff.webp" width="460" height="460" alt="Foto de Geff">
+          <figcaption>Geff, 2026.</figcaption>
+        </figure>
+      </div>
+      <div class="lead">
+        <p>Faço <strong>apps Android, sites, APIs e bots</strong>, do banco de dados à tela. Hoje divido a <a href="https://gldsolutions.com.br" rel="noopener">GLD Solutions</a> com o Lucas, onde publicamos software aberto e sem rastreadores.</p>
+        <div class="actions">
+          <a class="btn solid down" href="#projetos">Ver projetos <svg><use href="#down"/></svg></a>
+          <a class="btn" href="https://github.com/NGeff" rel="noopener">GitHub <svg><use href="#arr"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <div class="skill-category animate-in">
-                    <h3>
-                        <svg width="20" height="20" viewBox="0 0 16 16" fill="var(--text-secondary)">
-                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z"></path>
-                        </svg>
-                        Tools & DevOps
-                    </h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">CI/CD</span>
-                        <span class="skill-tag">Linux</span>
-                        <span class="skill-tag">VS Code</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section class="sec" id="agora">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Agora</h2>
+        <p>O projeto em que mais estou trabalhando.</p>
+      </div>
+      <div class="now">
+        <div class="rv">
+          <div class="now-id">
+            <img src="/assets/img/lince.svg" width="64" height="64" alt="">
+            <h3>Lince</h3>
+          </div>
+          <p class="now-meta"><span>v1.0.0</span><span>Android</span><span>Kotlin</span><span>GPL-3.0</span></p>
+          <p class="now-text">Gerenciador de arquivos com ferramentas de APK, feito pela GLD Solutions. Código aberto, sem anúncios e sem coleta de dados.</p>
+          <ul class="now-list">
+            <li>Dois painéis, lixeira, favoritos e ZIP, 7z, TAR e RAR</li>
+            <li>Editor de APK: manifest, recursos, smali e Java, com assinatura</li>
+            <li>Terminal com Debian, Ubuntu, Arch ou Alpine, sem root</li>
+          </ul>
+          <div class="actions">
+            <a class="btn solid" href="https://gldsolutions.com.br/lince/index.html" rel="noopener">Página do Lince <svg><use href="#arr"/></svg></a>
+            <a class="btn" href="https://github.com/gldsolutions/lince" rel="noopener">Código-fonte <svg><use href="#arr"/></svg></a>
+          </div>
+        </div>
+        <div class="phones rv" aria-label="Telas do Lince">
+          <figure class="phone p1"><img src="/assets/img/apk-editor.webp" width="720" height="1600" alt="Editor de APK do Lince" loading="lazy"></figure>
+          <figure class="phone p2"><img src="/assets/img/arquivos.webp" width="720" height="1600" alt="Lista de arquivos do Lince" loading="lazy"></figure>
+          <figure class="phone p3"><img src="/assets/img/terminal.webp" width="720" height="1600" alt="Terminal do Lince" loading="lazy"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="contact-section" id="contact">
-            <h2 class="section-title">Get in Touch</h2>
-            <div class="contact-grid">
-                <a href="https://github.com/NGeff" class="contact-card" target="_blank" rel="noopener noreferrer">
-                    <div class="contact-icon">
-                        <svg width="32" height="32" viewBox="0 0 16 16" fill="var(--text-primary)">
-                            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-                        </svg>
-                    </div>
-                    <div class="contact-info">
-                        <h4>GitHub</h4>
-                        <p>github.com/NGeff</p>
-                    </div>
-                </a>
+  <section class="sec" id="projetos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Projetos</h2>
+        <p>Tudo aqui tem código público. Clique para abrir o repositório.</p>
+      </div>
+      <ol class="index">
+        <li class="row rv"><a href="https://github.com/gldsolutions/lince" rel="noopener"><span class="n">01</span><span class="y">2026</span><h3>Lince</h3><span class="d">Gerenciador de arquivos e ferramentas de APK para Android.</span><span class="s">Kotlin</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/gld-rest-api" rel="noopener"><span class="n">02</span><span class="y">2026</span><h3>GLD REST API</h3><span class="d">API com painel de gestão, chaves de acesso, planos e pagamentos.</span><span class="s">Node.js, Express, MongoDB, React</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/discord-shop-bot" rel="noopener"><span class="n">03</span><span class="y">2026</span><h3>ShopBot</h3><span class="d">Loja completa dentro do Discord, com pagamento por PIX.</span><span class="s">discord.js, Mercado Pago</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/advanced-ticket-system" rel="noopener"><span class="n">04</span><span class="y">2026</span><h3>Ticket System</h3><span class="d">Bot de atendimento por tickets para servidores do Discord.</span><span class="s">discord.js</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/mathlab" rel="noopener"><span class="n">05</span><span class="y">2026</span><h3>MathLab</h3><span class="d">Plataforma colaborativa para estudar matemática.</span><span class="s">React, Node.js, MongoDB</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/gl-bot" rel="noopener"><span class="n">06</span><span class="y">2025</span><h3>GL Bot</h3><span class="d">Bot de WhatsApp modular, com sistema de comandos.</span><span class="s">Node.js, Baileys</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/taskflow" rel="noopener"><span class="n">07</span><span class="y">2025</span><h3>TaskFlow</h3><span class="d">Gerenciador de tarefas com subtarefas, prioridades e categorias.</span><span class="s">React, Express</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/visual-email-builder" rel="noopener"><span class="n">08</span><span class="y">2025</span><h3>Email Builder</h3><span class="d">Editor visual de e-mails HTML com prévia em tempo real.</span><span class="s">JavaScript, Node.js</span><svg><use href="#arr"/></svg></a></li>
+        <li class="row rv"><a href="https://github.com/NGeff/StoryForge" rel="noopener"><span class="n">09</span><span class="y">2025</span><h3>StoryForge</h3><span class="d">Motor de histórias interativas com caminhos e conquistas.</span><span class="s">JavaScript</span><svg><use href="#arr"/></svg></a></li>
+      </ol>
+      <p class="index-foot">Além desses, faço trabalhos fechados para clientes da GLD. <a href="https://github.com/NGeff?tab=repositories" rel="noopener">Todos os repositórios</a></p>
+    </div>
+  </section>
 
-                <a href="mailto:geff@gldsolutions.xyz" class="contact-card">
-                    <div class="contact-icon">
-                        <svg width="32" height="32" viewBox="0 0 16 16" fill="var(--text-primary)">
-                            <path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"></path>
-                        </svg>
-                    </div>
-                    <div class="contact-info">
-                        <h4>Email</h4>
-                        <p>geff@gldsolutions.xyz</p>
-                    </div>
-                </a>
+  <section class="sec" id="ferramentas">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Ferramentas</h2>
+        <p>O que uso no dia a dia, sem enfeitar a lista.</p>
+      </div>
+      <dl class="tools">
+        <div class="rv"><dt>Linguagens</dt><dd>JavaScript, Kotlin, Python, Lua</dd></div>
+        <div class="rv"><dt>Interface</dt><dd>React, HTML e CSS na mão</dd></div>
+        <div class="rv"><dt>Servidor</dt><dd>Node.js, Express, MongoDB</dd></div>
+        <div class="rv"><dt>Mobile</dt><dd>Android nativo em Kotlin</dd></div>
+        <div class="rv"><dt>Bots</dt><dd>discord.js, Baileys</dd></div>
+        <div class="rv"><dt>Pagamentos</dt><dd>PIX pelo Mercado Pago</dd></div>
+      </dl>
+    </div>
+  </section>
 
-                <a href="https://www.linkedin.com/in/ngeff" class="contact-card" target="_blank" rel="noopener noreferrer">
-                    <div class="contact-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--text-primary)">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                    </div>
-                    <div class="contact-info">
-                        <h4>LinkedIn</h4>
-                        <p>linkedin.com/in/ngeff</p>
-                    </div>
-                </a>
+  <section class="sec contact" id="contato">
+    <div class="wrap">
+      <h2>Bora<br>conversar<span>.</span></h2>
+      <ul class="links">
+        <li><a href="mailto:contato@gldsolutions.com.br"><span class="k">E-mail, pela GLD</span><span class="v">contato<wbr>@gldsolutions.com.br</span><svg><use href="#arr"/></svg></a></li>
+        <li><a href="https://github.com/NGeff" rel="noopener"><span class="k">GitHub</span><span class="v">NGeff</span><svg><use href="#arr"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/ngeff" rel="noopener"><span class="k">LinkedIn</span><span class="v">in/ngeff</span><svg><use href="#arr"/></svg></a></li>
+        <li><a href="https://www.instagram.com/geff.vv" rel="noopener"><span class="k">Instagram</span><span class="v">@geff.vv</span><svg><use href="#arr"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
 
-                <a href="https://www.instagram.com/geff.vv" class="contact-card" target="_blank" rel="noopener noreferrer">
-                    <div class="contact-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--text-primary)">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                        </svg>
-                    </div>
-                    <div class="contact-info">
-                        <h4>Instagram</h4>
-                        <p>@geff.vv</p>
-                    </div>
-                </a>
-            </div>
-        </section>
-    </main>
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Geff. Sem cookies e sem rastreadores.</span>
+    <a href="https://github.com/NGeff/NGeff.github.io" rel="noopener">Código desta página</a>
+  </div>
+</footer>
 
-    <footer>
-        <p>Built with passion. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.skill-category').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+<script>
+(function () {
+  var els = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('on'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); } });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
 </body>
 </html>
